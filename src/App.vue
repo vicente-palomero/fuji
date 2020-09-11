@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Selector />
     <Countdown />
     <p>{{ timeboxes }} Pomodoros</p>
   </div>
@@ -8,11 +9,13 @@
 <script>
 import { mapState } from 'vuex'
 import Countdown from './components/Countdown.vue'
+import Selector from './components/Selector.vue'
 
 export default {
   name: 'App',
   components: {
-    Countdown
+    Countdown,
+    Selector
   },
   computed: mapState({
     timeboxes: state => state.timebox.count

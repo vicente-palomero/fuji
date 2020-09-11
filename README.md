@@ -1,4 +1,4 @@
-# pomado
+# fuji
 
 ## Project setup
 ```

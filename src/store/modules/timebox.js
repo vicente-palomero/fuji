@@ -15,6 +15,9 @@ const getters = {
 }
 
 const actions = {
+  setMinutes({ commit }, minutes) {
+    commit('setMinutes', minutes)
+  },
   run({ commit }) {
     commit('run')
   },
@@ -37,6 +40,10 @@ const mutations = {
       state.count++
       state.isRunning = false
     }
+  },
+  setMinutes(state, minutes) {
+    state.initialMs = minutes * 60 * 1000
+    state.ms = state.initialMs
   }
 }
 
