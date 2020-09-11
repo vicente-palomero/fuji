@@ -1,8 +1,13 @@
 const state = () => ({
-  ms: 25 * 60 * 1000,
-  initialMs: 25 * 60 * 1000,
+  ms: 0,
+  initialMs: 0,
+  timebox: 0,
+  shortRest: 0,
+  longRest: 0,
+  cycle: 4,
   count: 0,
-  isRunning: false
+  isRunning: false,
+  countRests: 0
 })
 
 const getters = {
@@ -15,8 +20,14 @@ const getters = {
 }
 
 const actions = {
-  setMinutes({ commit }, minutes) {
-    commit('setMinutes', minutes)
+  setTimebox({ commit }, minutes) {
+    commit('setMinutes', {box: 'timebox', minutes})
+  },
+  setShortRest({ commit }, minutes) {
+    commit('setMinutes', {box: 'shortRest', minutes})
+  },
+  setLongRest({ commit }, minutes) {
+    commit('setMinutes', {box: 'longRest', minutes})
   },
   run({ commit }) {
     commit('run')
@@ -36,14 +47,25 @@ const mutations = {
   secondPassed(state) {
     state.ms = state.ms - 1000
     if (state.ms <= 0) {
-      state.ms = state.initialMs,
-      state.count++
       state.isRunning = false
+      if (state.count == state.countRests || 0) {
+        state.count++
+        const rest = (state.count % state.cycle) ? state.shortRest : state.longRest
+        state.initialMs = rest * 60 * 1000
+        state.ms = state.initialMs
+      } else {
+        state.countRests++
+        state.initialMs = state.timebox * 60 * 1000
+        state.ms = state.initialMs
+      }
     }
   },
-  setMinutes(state, minutes) {
-    state.initialMs = minutes * 60 * 1000
-    state.ms = state.initialMs
+  setMinutes(state, { box, minutes }) {
+    state[box] = minutes
+    if (box == 'timebox') {
+      state.initialMs = state.timebox * 60 * 1000
+      state.ms = state.initialMs
+    }
   }
 }
 
