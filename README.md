@@ -1,4 +1,4 @@
-# fuji
+# fujit
 
 ## Project setup
 ```
