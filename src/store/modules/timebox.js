@@ -1,5 +1,7 @@
 const state = () => ({
   ms: 0,
+  current: 0,
+  end: 0,
   initialMs: 0,
   timebox: 0,
   shortRest: 0,
@@ -15,7 +17,7 @@ const getters = {
     return String(Math.floor(state.ms / 60000))
   },
   seconds: (state) => {
-    return String((state.ms / 1000) % 60).padStart(2, '0')
+    return String((Math.floor(state.ms / 1000)) % 60).padStart(2, '0')
   }
 }
 
@@ -42,10 +44,16 @@ const mutations = {
     state.isRunning = !state.isRunning
     if (!state.isRunning) {
       state.ms = state.initialMs
+    } else {
+      const start = Date.now()
+      state.end = start + state.initialMs
+      state.current = start
     }
   },
   secondPassed(state) {
-    state.ms = state.ms - 1000
+    state.current = Date.now()
+    state.ms = state.end - state.current
+
     if (state.ms <= 0) {
       state.isRunning = false
       if (state.count == state.countRests || 0) {
