@@ -34,7 +34,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: lightsteelblue;
+  background: linear-gradient(180deg, white 0%, lightsteelblue 35%);
 }
 
 #app {
@@ -50,12 +50,10 @@ html, body {
 
 .content {
   flex: 1 0 auto;
-  padding: 20px;
 }
 
 .footer {
   font-size: 7vw;
   flex-shrink: 0;
-  padding: 20px;
 }
 </style>
