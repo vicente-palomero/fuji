@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <Countdown />
-    <p>{{ timeboxes }} Pomodoros</p>
+    <div class="content">
+      <Countdown />
+    </div>
+    <footer class="footer">
+      <p>Counter: {{ timeboxes }}</p>
+    </footer>
   </div>
 </template>
 
@@ -26,12 +30,32 @@ export default {
 </script>
 
 <style>
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: lightsteelblue;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  height: 100%
+}
+
+.content {
+  flex: 1 0 auto;
+  padding: 20px;
+}
+
+.footer {
+  font-size: 7vw;
+  flex-shrink: 0;
+  padding: 20px;
 }
 </style>

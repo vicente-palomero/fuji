@@ -41,5 +41,16 @@ export default {
 </script>
 
 <style>
-
+.countdown {
+  font-size: 15vw;
+}
+button {
+  background-color: white;
+  border: none;
+  width: 70%;
+  display: inline-block;
+  padding: 15px 32px;
+  font-size: 10vw;
+25:00
+0 Pomo}
 </style>
