@@ -51,6 +51,6 @@ button {
   display: inline-block;
   padding: 15px 32px;
   font-size: 10vw;
-25:00
-0 Pomo}
+  outline: none;
+}
 </style>
