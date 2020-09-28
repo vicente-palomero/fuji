@@ -9,10 +9,20 @@ const state = () => ({
   cycle: 4,
   count: 0,
   isRunning: false,
+  type: 'wip',
   countRests: 0
 })
 
 const getters = {
+  countdownType: (state) => {
+    if (!state.isRunning) {
+      return 'stop'
+    }
+    if (state.type !== 'wip') {
+      return 'wip'
+    }
+    return 'rest'
+  },
   minutes: (state) => {
     return String(Math.floor(state.ms / 60000))
   },
@@ -61,10 +71,12 @@ const mutations = {
         const rest = (state.count % state.cycle) ? state.shortRest : state.longRest
         state.initialMs = rest * 60 * 1000
         state.ms = state.initialMs
+        state.type = 'rest'
       } else {
         state.countRests++
         state.initialMs = state.timebox * 60 * 1000
         state.ms = state.initialMs
+        state.type = 'wip'
       }
     }
   },

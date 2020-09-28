@@ -4,23 +4,21 @@
       <Countdown />
     </div>
     <footer class="footer">
-      <p>Counter: {{ timeboxes }}</p>
+      <Summary />
     </footer>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import Countdown from './components/Countdown.vue'
+import Summary from './components/Summary.vue'
 
 export default {
   name: 'App',
   components: {
-    Countdown
+    Countdown,
+    Summary
   },
-  computed: mapState({
-    timeboxes: state => state.timebox.count
-  }),
   mounted () {
     this.$store.dispatch('timebox/setTimebox', 25)
     this.$store.dispatch('timebox/setShortRest', 5)
