@@ -18,7 +18,7 @@ const getters = {
     if (!state.isRunning) {
       return 'stop'
     }
-    if (state.type !== 'wip') {
+    if (state.type === 'wip') {
       return 'wip'
     }
     return 'rest'
