@@ -4,7 +4,7 @@
       <p>{{ statusText }}</p>
     </div>
     <div class="column">
-      <p>Counter: {{ timeboxes }}</p>
+      <p>Count: {{ timeboxes }}</p>
     </div>
   </div>
 </template>
