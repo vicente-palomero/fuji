@@ -1,22 +1,27 @@
 <template>
   <div id="app">
+    <header class="header">
+      <Summary />
+    </header>
     <div class="content">
       <Countdown />
     </div>
     <footer class="footer">
-      <Summary />
+      <Clean />
     </footer>
   </div>
 </template>
 
 <script>
 import Countdown from './components/Countdown.vue'
+import Clean from './components/Clean.vue'
 import Summary from './components/Summary.vue'
 
 export default {
   name: 'App',
   components: {
     Countdown,
+    Clean,
     Summary
   },
   mounted () {
@@ -50,8 +55,23 @@ html, body {
   flex: 1 0 auto;
 }
 
+.header {
+  font-size: 7vw;
+  flex-shrink: 0;
+}
+
 .footer {
   font-size: 7vw;
   flex-shrink: 0;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: white;
+  border: none;
+  width: 70%;
+  display: inline-block;
+  font-size: 10vw;
+  outline: none;
 }
 </style>

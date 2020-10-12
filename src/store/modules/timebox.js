@@ -1,4 +1,4 @@
-const state = () => ({
+const initialState = {
   ms: 0,
   current: 0,
   end: 0,
@@ -11,7 +11,11 @@ const state = () => ({
   isRunning: false,
   type: 'wip',
   countRests: 0
-})
+
+}
+const state = () => (
+  initialState
+)
 
 const getters = {
   countdownType: (state) => {
@@ -32,6 +36,15 @@ const getters = {
 }
 
 const actions = {
+  clean({ commit }) {
+    commit('clean')
+  },
+  run({ commit }) {
+    commit('run')
+  },
+  secondPassed({ commit }) {
+    commit('secondPassed')
+  },
   setTimebox({ commit }, minutes) {
     commit('setMinutes', {box: 'timebox', minutes})
   },
@@ -40,16 +53,23 @@ const actions = {
   },
   setLongRest({ commit }, minutes) {
     commit('setMinutes', {box: 'longRest', minutes})
-  },
-  run({ commit }) {
-    commit('run')
-  },
-  secondPassed({ commit }) {
-    commit('secondPassed')
   }
 }
 
 const mutations = {
+  clean(state) {
+    state.initialMs = state.timebox * 60 * 1000
+    state.ms = state.initialMs
+    state.type = 'wip'
+    state.current = 0,
+    state.end = 0,
+    state.shortRest = 0,
+    state.longRest = 0,
+    state.cycle = 4,
+    state.count = 0,
+    state.isRunning = false,
+    state.countRests = 0
+  },
   run(state) {
     state.isRunning = !state.isRunning
     if (!state.isRunning) {

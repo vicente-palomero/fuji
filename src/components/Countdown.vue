@@ -1,7 +1,7 @@
 <template>
   <div class="countdown">
     <p>{{ mins }}:{{ secs }}</p>
-    <button v-on:click="run">{{ buttonLabel }}</button>
+    <button class="run" v-on:click="run">{{ buttonLabel }}</button>
   </div>
 </template>
 
@@ -44,13 +44,7 @@ export default {
 .countdown {
   font-size: 15vw;
 }
-button {
-  background-color: white;
-  border: none;
-  width: 70%;
-  display: inline-block;
+button.run{
   padding: 15px 32px;
-  font-size: 10vw;
-  outline: none;
 }
 </style>

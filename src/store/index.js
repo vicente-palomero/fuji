@@ -5,10 +5,26 @@ import timebox from './modules/timebox'
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
+const storageItem = 'fujit'
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   modules: {
     timebox
   },
+  mutations: {
+    initializeStore(state) {
+      if (localStorage.getItem(storageItem)) {
+        this.replaceState(
+          Object.assign(state, JSON.parse(localStorage.getItem(storageItem)))
+        )
+      }
+    },
+  },
   strict: debug
 })
+
+store.subscribe((mutation, state) => {
+  localStorage.setItem(storageItem, JSON.stringify(state))
+})
+
+export default store
