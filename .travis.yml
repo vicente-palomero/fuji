@@ -1,0 +1,13 @@
+languaje: node_js
+node_js:
+- lts/*
+cache: yarn
+script:
+- yarn build
+deploy:
+  provider: heroku
+  api_key:
+    secure: lWDftj3XOEGCGbYITpMw3txTfCxZYbwJ8SqZqDiA8eMRZ6trHSQkfNWiUrE0Tb9EHSyCrzTuATcwnTTpbn6fXDj+6z/l/L+ghYHw+L91xgRfSUzUz4S6fnciRUIZ9FAxqTTMadciNk17eRS1MhvOJ0yNezCl/xThpV/exiNBCDAGlDTSe4EVX+c1dxzhctRMoW7bzFPK+mzLU5VS/P03wYGqHOkbh05oSd2u6sp3T2oBldLVkSdjaM6BXgE6Y1BVyS8nWIFnbdIgYnQGskV0J4yBObnX67Z/3YNK1N9eJKnmSyOyAw7FLSBPdnlfZke/pi2Bva3wYPPXIxJ5VagPHhaEXcFwsb6jTGqiU+Gx91rUjBZG160pznF2sGbDPtj4JqIoLve3KSxJaE8R9Dl2tbMx8o1se0mp0Zt+UU7zeLeaXM7opfEIsw/kKHECbe8+MGZVH5zIn/OjYdUG1gJfqhmTTGpuIGfNecoJ64kiHoaNScb/Rg+/9EPF0yhk/GYB5RTgG3BaMZUNwRA++WlPRM9ePXPOnlat6ziD0f53C4JGfsRNoZ26QMUDYZ4VhL/BYdRz2Ip3xVmbLVev+Ei9VAkLx3p8jBvmXg9HVuG9nUU3Wt52BVeiv/zWVuQarNFzHKW1JybUXHPOOgNop4LFMI3rlTf1BFH5TM7wHPIsWm0=
+  app: fujit
+  on:
+    branch: master
