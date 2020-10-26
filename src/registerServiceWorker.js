@@ -2,12 +2,6 @@
 
 import { register } from 'register-service-worker'
 
-self.addEventListener('push', () => {
-  self.registration.showNotification('endTimer', {
-    body: 'Notified'
-  })
-})
-
 if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}service-worker.js`, {
     ready () {

@@ -36,13 +36,6 @@ export default {
         this.$store.dispatch('timebox/secondPassed')
       }.bind(this), 1000)
     })
-  },
-  watch: {
-    isRunning(newValue, oldValue) {
-      if (!newValue && newValue !== oldValue) {
-        this.$emit('push')
-      }
-    }
   }
 }
 </script>
