@@ -57,7 +57,9 @@ export default {
     }
   },
   mounted () {
-    Notification.requestPermission()
+    if (confirm('Do you want to allow Notifications?')) {
+      Notification.requestPermission()
+    }
   }
 }
 </script>
