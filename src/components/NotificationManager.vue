@@ -1,6 +1,5 @@
 <template>
   <div class="notificationManager">
-    <!--button v-if="notificationsSupported" @click="askPermission">Enable notifications</button-->
   </div>
 </template>
 
@@ -20,25 +19,11 @@ export default {
     })
   },
   methods: {
-//    askPermission() {
-//      if (this.notificationSupported) {
-//        Notification.requestPermission()
-//        Notification.requestPermission(result => {
-//          console.log('result from permission question', result);
-//          if (result !== 'granted') {
-//            alert('You probably do not like notifications?!');
-//          } else {
-//             console.log('A notification will be send from the service worker => This only works in production');
-//             this.showNotification()
-//           }
-//         })
-//      }
-//    },
     showNotification() {
       if('serviceWorker' in navigator) {
         navigator.serviceWorker.ready
-          .then(swreg => swreg.showNotification('Notifications granted', {
-            body: 'Here is a first notification',
+          .then(swreg => swreg.showNotification('Timebox is done', {
+            body: 'The timebox is done, check Fujit!',
             vibrate: [300, 200, 300]
         }))
       }
@@ -57,7 +42,7 @@ export default {
     }
   },
   mounted () {
-    if (confirm('Do you want to allow Notifications?')) {
+    if (this.notificationsSupported && confirm('Do you want to allow Notifications?')) {
       Notification.requestPermission()
     }
   }
