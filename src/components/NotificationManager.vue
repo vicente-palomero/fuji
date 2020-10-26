@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     ...mapState({
-      isRunning: state => state.timebox.isRunning
+      isRunning: state => state.timebox.isRunning,
       notificationsGranted: state => state.timebox.notificationsGranted
     })
   },
