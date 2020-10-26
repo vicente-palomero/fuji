@@ -9,11 +9,11 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'NotificationManager',
-//   data () {
-//     return {
-//       notificationSupported: false,
-//     }
-//   },
+   data () {
+     return {
+       notificationSupported: false,
+     }
+   },
   computed: {
     ...mapState({
       isRunning: state => state.timebox.isRunning
@@ -53,9 +53,11 @@ export default {
   },
   created() {
     if ('Notification' in window && 'serviceWorker' in navigator) {
-      // this.notificationSupported = true
-      Notification.requestPermission()
+      this.notificationSupported = true
     }
+  },
+  mounted () {
+    Notification.requestPermission()
   }
 }
 </script>
