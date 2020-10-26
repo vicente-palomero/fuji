@@ -25,7 +25,7 @@ export default {
     Summary
   },
   mounted () {
-    this.$store.dispatch('timebox/setTimebox', 25)
+    this.$store.dispatch('timebox/setTimebox', 0.1)
     this.$store.dispatch('timebox/setShortRest', 5)
     this.$store.dispatch('timebox/setLongRest', 15)
   }
