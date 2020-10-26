@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import timebox from './modules/timebox'
+import appState from './modules/appState'
 
 Vue.use(Vuex)
 
@@ -9,6 +10,7 @@ const storageItem = 'fujit'
 
 const store = new Vuex.Store({
   modules: {
+    appState,
     timebox
   },
   mutations: {
