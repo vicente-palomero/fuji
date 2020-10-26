@@ -4,6 +4,7 @@
       <Summary />
     </header>
     <div class="content">
+      <NotificationManager />
       <Countdown />
     </div>
     <footer class="footer">
@@ -16,12 +17,14 @@
 import Countdown from './components/Countdown.vue'
 import Clean from './components/Clean.vue'
 import Summary from './components/Summary.vue'
+import NotificationManager from './components/NotificationManager.vue'
 
 export default {
   name: 'App',
   components: {
     Countdown,
     Clean,
+    NotificationManager,
     Summary
   },
   mounted () {
