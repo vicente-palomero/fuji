@@ -1,6 +1,6 @@
 <template>
   <div class="notificationManager">
-    <button v-if="notificationSupported" @click="askPermission">Enable notifications</button>
+    <button v-if="notificationsSupported" @click="askPermission">Enable notifications</button>
   </div>
 </template>
 
@@ -53,6 +53,8 @@ export default {
   created() {
     if ('Notification' in window && 'serviceWorker' in navigator) {
       this.notificationSupported = true
+    } else {
+      alert('something failed')
     }
   }
 }
