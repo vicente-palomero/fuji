@@ -5,12 +5,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'NotificationManager',
-  data() {
+  data () {
     return {
-      notificationSupported: false,
+      notificationSupported: false
     }
+  },
+  computed: {
+    ...mapState({
+      isRunning: state => state.timebox.isRunning
+    })
   },
   methods: {
     askPermission() {
@@ -35,6 +42,13 @@ export default {
         }))
       }
     },
+  },
+  watch: {
+    isRunning(newValue, oldValue) {
+      if (oldValue && newValue !== oldValue) {
+        this.showNotification()
+      }
+    }
   },
   created() {
     if ('Notification' in window && 'serviceWorker' in navigator) {
