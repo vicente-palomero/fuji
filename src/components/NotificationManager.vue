@@ -8,14 +8,15 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'NotificationManager',
-   data () {
-     return {
-       notificationSupported: false,
-     }
-   },
+  data () {
+   return {
+     notificationSupported: false,
+   }
+  },
   computed: {
     ...mapState({
       isRunning: state => state.timebox.isRunning
+      notificationsGranted: state => state.timebox.notificationsGranted
     })
   },
   methods: {
@@ -42,8 +43,12 @@ export default {
     }
   },
   mounted () {
-    if (this.notificationsSupported && confirm('Do you want to allow Notifications?')) {
-      Notification.requestPermission()
+    if (this.notificationsSupported
+      && !this.notificationsGranted
+      && confirm('Do you want to allow Notifications?')) {
+      Notification.requestPermission(result => {
+        this.notificationsGranted = result === 'granted'
+      })
     }
   }
 }
