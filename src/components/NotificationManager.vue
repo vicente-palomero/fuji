@@ -16,7 +16,7 @@ export default {
   computed: {
     ...mapState({
       isRunning: state => state.timebox.isRunning,
-      notificationsGranted: state => state.timebox.notificationsGranted
+      notificationsGranted: state => state.appState.notificationsGranted
     })
   },
   methods: {
@@ -43,11 +43,12 @@ export default {
     }
   },
   mounted () {
-    if (this.notificationsSupported
+    let shallAsk = this.notificationsSupported
       && !this.notificationsGranted
-      && confirm('Do you want to allow Notifications?')) {
-      Notification.requestPermission(result => {
-        this.notificationsGranted = result === 'granted'
+      && confirm('Do you want to allow Notifications?')
+    if (shallAsk) {
+      Notification.requestPermission().then(result => {
+        this.$store.dispatch('appState/grantNotification', result === 'granted')
       })
     }
   }

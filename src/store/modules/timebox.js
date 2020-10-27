@@ -1,5 +1,4 @@
 const initialState = {
-  notificationsGranted: false,
   ms: 0,
   current: 0,
   end: 0,
