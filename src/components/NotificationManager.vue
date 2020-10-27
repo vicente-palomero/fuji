@@ -10,7 +10,7 @@ export default {
   name: 'NotificationManager',
   data () {
    return {
-     notificationSupported: false,
+     notificationsSupported: false,
    }
   },
   computed: {
@@ -39,7 +39,7 @@ export default {
   },
   created() {
     if ('Notification' in window && 'serviceWorker' in navigator) {
-      this.notificationSupported = true
+      this.notificationsSupported = true
     }
   },
   mounted () {
