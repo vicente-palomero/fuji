@@ -43,10 +43,8 @@ export default {
     }
   },
   mounted () {
-    let shallAsk = this.notificationsSupported
-      && !this.notificationsGranted
-      && confirm('Do you want to allow Notifications?')
-    if (shallAsk) {
+    let shallAsk = this.notificationsSupported && !this.notificationsGranted
+    if (shallAsk && confirm('Do you want to allow Notifications?')) {
       Notification.requestPermission().then(result => {
         this.$store.dispatch('appState/grantNotification', result === 'granted')
       })
