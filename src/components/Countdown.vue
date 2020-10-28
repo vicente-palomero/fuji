@@ -1,15 +1,29 @@
 <template>
   <div class="countdown">
-    <p>{{ mins }}:{{ secs }}</p>
-    <button class="run" v-on:click="run">{{ buttonLabel }}</button>
+    <p class="remaining">{{ mins }}:{{ secs }}</p>
+    <div class="row">
+      <div class="column">
+        <Clean />
+      </div>
+      <div class="column">
+        <Start />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Start from './buttons/Start'
+import Clean from './buttons/Clean'
+
 import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'Countdown',
+  components: {
+    Clean,
+    Start
+  },
   computed: {
     ...mapState({
       isRunning: state => state.timebox.isRunning
@@ -20,11 +34,6 @@ export default {
     }),
     buttonLabel () {
       return this.isRunning ? "Reset" : "Start"
-    }
-  },
-  methods: {
-    run () {
-      this.$store.dispatch('timebox/run')
     }
   },
   mounted () {
@@ -40,11 +49,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .countdown {
-  font-size: 15vw;
 }
-button.run{
-  padding: 15px 32px;
+.remaining {
+  font-size: 20vw;
+  margin: 0;
+}
+.row {
+  justify-content: center;
+  display: flex;
+}
+.column {
+  padding: 0;
+  margin: 0;
 }
 </style>

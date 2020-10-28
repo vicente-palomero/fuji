@@ -1,21 +1,19 @@
 <template>
   <div id="app">
-    <header class="header">
+    <div class="header">
       <Summary />
-    </header>
+    </div>
     <div class="content">
       <NotificationManager />
       <Countdown />
     </div>
     <footer class="footer">
-      <Clean />
     </footer>
   </div>
 </template>
 
 <script>
 import Countdown from './components/Countdown.vue'
-import Clean from './components/Clean.vue'
 import Summary from './components/Summary.vue'
 import NotificationManager from './components/NotificationManager.vue'
 
@@ -23,7 +21,6 @@ export default {
   name: 'App',
   components: {
     Countdown,
-    Clean,
     NotificationManager,
     Summary
   },
@@ -51,30 +48,36 @@ html, body {
   color: #2c3e50;
   display: flex;
   flex-direction: column;
-  height: 100%
+  align-items: flex-start;
+  height: 100vh;
 }
 
 .content {
   flex: 1 0 auto;
+  align-self: center;
 }
 
 .header {
   font-size: 7vw;
-  flex-shrink: 0;
+  align-self: center;
+  width: 100%;
+  height: 40%;
 }
 
 .footer {
   font-size: 7vw;
+  align-self: center;
   flex-shrink: 0;
   margin-bottom: 15px;
 }
 
 button {
-  background-color: white;
+  background-color: transparent;
   border: none;
+  min-width: 6ex;
   width: 70%;
   display: inline-block;
-  font-size: 10vw;
+  font-size: 5vw;
   outline: none;
 }
 </style>
