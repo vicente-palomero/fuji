@@ -1,3 +1,7 @@
+function minutesToMs (minutes) {
+    return minutes * 60 * 1000
+}
+
 const initialState = {
   ms: 0,
   current: 0,
@@ -58,13 +62,11 @@ const actions = {
 
 const mutations = {
   clean(state) {
-    state.initialMs = state.timebox * 60 * 1000
+    state.initialMs = minutesToMs(state.timebox)
     state.ms = state.initialMs
     state.type = 'wip'
     state.current = 0,
     state.end = 0,
-    state.shortRest = 0,
-    state.longRest = 0,
     state.cycle = 4,
     state.count = 0,
     state.isRunning = false,
@@ -89,12 +91,12 @@ const mutations = {
       if (state.count == state.countRests || 0) {
         state.count++
         const rest = (state.count % state.cycle) ? state.shortRest : state.longRest
-        state.initialMs = rest * 60 * 1000
+        state.initialMs = minutesToMs(rest)
         state.ms = state.initialMs
         state.type = 'rest'
       } else {
         state.countRests++
-        state.initialMs = state.timebox * 60 * 1000
+        state.initialMs = minutesToMs(state.timebox)
         state.ms = state.initialMs
         state.type = 'wip'
       }
@@ -103,7 +105,7 @@ const mutations = {
   setMinutes(state, { box, minutes }) {
     state[box] = minutes
     if (box == 'timebox') {
-      state.initialMs = state.timebox * 60 * 1000
+      state.initialMs = minutesToMs(state.timebox)
       state.ms = state.initialMs
     }
   }
