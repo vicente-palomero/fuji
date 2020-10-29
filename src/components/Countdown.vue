@@ -1,6 +1,10 @@
 <template>
   <div class="countdown">
-    <p class="remaining">{{ mins }}:{{ secs }}</p>
+    <p class="remaining"
+       v-bind:class="{ rest: countdownType === 'rest', work: countdownType === 'wip' }"
+    >
+      {{ mins }}:{{ secs }}
+    </p>
     <div class="row">
       <div class="column">
         <Clean />
@@ -30,7 +34,8 @@ export default {
     }),
     ...mapGetters('timebox', {
       mins: 'minutes',
-      secs: 'seconds'
+      secs: 'seconds',
+      countdownType: 'countdownType'
     }),
     buttonLabel () {
       return this.isRunning ? "Reset" : "Start"
@@ -50,8 +55,6 @@ export default {
 </script>
 
 <style scoped>
-.countdown {
-}
 .remaining {
   font-size: 20vw;
   margin: 0;

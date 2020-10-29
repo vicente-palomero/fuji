@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <div class="header">
+    <header class="header">
       <Summary />
-    </div>
+    </header>
     <div class="content">
       <NotificationManager />
       <Countdown />
@@ -80,4 +80,12 @@ button {
   font-size: 5vw;
   outline: none;
 }
+.rest {
+  color: forestgreen;
+}
+
+.work {
+  color: tomato;
+}
+
 </style>
