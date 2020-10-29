@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <button class="reset" v-on:click="clean">Clean</button>
-  </div>
+  <button class="reset" v-on:click="clean">Clean</button>
 </template>
 
 <script>
@@ -17,7 +15,6 @@ export default {
 
 <style>
 button.reset {
-  font-size: 8vw;
   color: tomato
 }
 </style>

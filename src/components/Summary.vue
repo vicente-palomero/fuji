@@ -1,7 +1,11 @@
 <template>
   <div class="summary row">
     <div class="column">
-      <p>{{ statusText }}</p>
+    <p
+       v-bind:class="{ rest: countdownType === 'rest', work: countdownType === 'wip' }"
+    >
+      {{ statusText }}
+    </p>
     </div>
     <div class="column">
       <p>Done: {{ timeboxes }}</p>
@@ -35,7 +39,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .row {
   display: flex;
 }
