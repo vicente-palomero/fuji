@@ -10,7 +10,7 @@
         <Clean />
       </div>
       <div class="column">
-        <Start />
+        <Start v-bind:label="buttonLabel" />
       </div>
     </div>
   </div>

@@ -1,19 +1,13 @@
 <template>
-  <button class="run" v-on:click="run">{{ buttonLabel }}</button>
+  <button class="run" v-on:click="run">{{ label }}</button>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 
 export default {
   name: 'Start',
-  computed: {
-    ...mapState({
-      isRunning: state => state.timebox.isRunning
-    }),
-    buttonLabel () {
-      return this.isRunning ? "Reset" : "Start"
-    }
+  props: {
+    label: String
   },
   methods: {
     run () {
