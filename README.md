@@ -1,5 +1,5 @@
 # fujit
-[![Build Status](https://travis-ci.com/vicente-palomero/fujit.svg?branch=master)](https://travis-ci.com/vicente-palomero/fujit) [![Coverage Status](https://coveralls.io/repos/github/vicente-palomero/fujit/badge.svg)](https://coveralls.io/github/vicente-palomero/fujit)
+[![Build Status](https://travis-ci.com/vicente-palomero/fujit.svg?branch=master)](https://travis-ci.com/vicente-palomero/fujit) 
 
 ## What is fujit and why does it exist?
 
