@@ -4,6 +4,9 @@ node_js:
 cache: yarn
 script:
 - yarn build
+- yarn unit:test
+after_script:
+- cat ./coverage/lcov.info | coveralls
 deploy:
   provider: heroku
   api_key:
