@@ -48,16 +48,8 @@ const actions = {
 
 const mutations = {
   clean(state) {
-    const newState = new TimeboxState()
-    newState.set('shortRest', state.shortRest)
-    newState.set('longRest', state.longRest)
-    newState.set('timebox', state.timebox)
-
-    state = newState
     state.initialMs = state.timebox.toMs()
     state.ms = state.initialMs
-      console.log({state})
-/*
     state.type = 'wip'
     state.current = 0,
     state.end = 0,
@@ -66,7 +58,6 @@ const mutations = {
     state.isRunning = false,
     state.isEnded = false,
     state.countRests = 0
-*/
   },
   run(state) {
     state.isRunning = !state.isRunning
@@ -111,12 +102,6 @@ const mutations = {
 }
 
 const hydrate = function(module) {
-  if (!module.history) {
-    return
-  }
-  module.history = module.history.map((tick) => {
-    return Object.assign(TickFactory.build(), tick)
-  })
   return module
 }
 export default {
@@ -124,5 +109,6 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
+  hydrate
 }
