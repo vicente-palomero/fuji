@@ -2,7 +2,7 @@
   <div class="summary row">
     <div class="column">
     <p
-       v-bind:class="{ rest: countdownType === 'rest', work: countdownType === 'wip' }"
+       v-bind:class="getClass"
     >
       {{ statusText }}
     </p>
@@ -23,8 +23,15 @@ export default {
       countdownType: 'countdownType'
     }),
     ...mapState({
-      timeboxes: state => state.timebox.count
+      timeboxes: state => state.timebox.count,
+      runType: state => state.timebox.runType
     }),
+    getClass() {
+      if (this.countdownType === 'rest') {
+        return 'rest'
+      }
+      return this.runType
+    },
     statusText () {
       switch (this.countdownType) {
         case 'wip':

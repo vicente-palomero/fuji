@@ -8,6 +8,7 @@
       <Countdown />
     </div>
     <footer class="footer">
+      <ButtonsMenu />
     </footer>
   </div>
 </template>
@@ -15,11 +16,13 @@
 <script>
 import Countdown from './components/Countdown.vue'
 import Summary from './components/Summary.vue'
+import ButtonsMenu from './components/ButtonsMenu.vue'
 import NotificationManager from './components/NotificationManager.vue'
 
 export default {
   name: 'App',
   components: {
+    ButtonsMenu,
     Countdown,
     NotificationManager,
     Summary
@@ -58,10 +61,10 @@ html, body {
 }
 
 .header {
-  font-size: 7vw;
+  font-size: 5vw;
   align-self: center;
   width: 100%;
-  height: 40%;
+  height: 20vh;
 }
 
 .footer {
@@ -85,7 +88,33 @@ button {
 }
 
 .work {
+  border-color: tomato;
   color: tomato;
+}
+
+.side {
+  border-color: lightsalmon;
+  color: lightsalmon;
+}
+
+.health {
+  border-color: royalblue;
+  color: royalblue;
+}
+
+.home {
+  border-color: cadetblue;
+  color: cadetblue;
+}
+
+.other {
+  border-color: cornflowerblue;
+  color: cornflowerblue;
+}
+
+.study {
+  border-color: crimson;
+  color: crimson;
 }
 
 </style>

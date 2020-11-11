@@ -1,44 +1,38 @@
 <template>
   <div class="countdown">
     <p class="remaining"
-       v-bind:class="{ rest: countdownType === 'rest', work: countdownType === 'wip' }"
+       v-bind:class="runningClass"
     >
       {{ mins }}:{{ secs }}
     </p>
-    <div class="row">
-      <div class="column">
-        <Clean />
-      </div>
-      <div class="column">
-        <Start v-bind:label="buttonLabel" />
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-import Start from './buttons/Start'
-import Clean from './buttons/Clean'
 
 import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'Countdown',
-  components: {
-    Clean,
-    Start
-  },
   computed: {
     ...mapState({
-      isRunning: state => state.timebox.isRunning
+      isRunning: state => state.timebox.isRunning,
+      runType: state => state.timebox.runType
     }),
     ...mapGetters('timebox', {
       mins: 'minutes',
       secs: 'seconds',
       countdownType: 'countdownType'
     }),
-    buttonLabel () {
-      return this.isRunning ? "Reset" : "Start"
+    runningClass () {
+      if (!this.isRunning) {
+        return ''
+      }
+      if (this.countdownType === 'rest') {
+        return 'rest'
+      } else {
+        return this.runType
+      }
     }
   },
   mounted () {
@@ -60,11 +54,19 @@ export default {
   margin: 0;
 }
 .row {
-  justify-content: center;
   display: flex;
+  justify-content: center;
 }
 .column {
   padding: 0;
   margin: 0;
 }
+.button {
+  margin: 5px 0;
+  width: 90px;
+  background-color: white;
+  border-radius: 7px;
+  border: 2px solid;
+}
+
 </style>

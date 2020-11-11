@@ -7,11 +7,12 @@
 export default {
   name: 'Start',
   props: {
-    label: String
+    label: String,
+    type: String
   },
   methods: {
     run () {
-      this.$store.dispatch('timebox/run')
+      this.$store.dispatch('timebox/run', this.type)
     }
   },
 }

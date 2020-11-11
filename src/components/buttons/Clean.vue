@@ -15,6 +15,6 @@ export default {
 
 <style>
 button.reset {
-  color: tomato
+  color: black
 }
 </style>
