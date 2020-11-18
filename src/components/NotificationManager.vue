@@ -16,7 +16,6 @@ export default {
   computed: {
     ...mapState({
       isRunning: state => state.timebox.isRunning,
-      isEnded: state => state.timebox.isEnded,
       notificationsGranted: state => state.appState.notificationsGranted
     })
   },
@@ -32,8 +31,8 @@ export default {
     },
   },
   watch: {
-    isEnded(newValue) {
-      if (newValue) {
+    isRunning(newValue, oldValue) {
+      if (oldValue && newValue !== oldValue) {
         this.showNotification()
       }
     }

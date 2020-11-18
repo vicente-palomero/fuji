@@ -13,7 +13,6 @@ const initialState = {
   cycle: 4,
   count: 0,
   isRunning: false,
-  isEnded: false,
   type: 'wip',
   countRests: 0
 
@@ -71,12 +70,10 @@ const mutations = {
     state.cycle = 4,
     state.count = 0,
     state.isRunning = false,
-    state.isEnded = false,
     state.countRests = 0
   },
   run(state) {
     state.isRunning = !state.isRunning
-    state.isEnded = false
     if (!state.isRunning) {
       state.ms = state.initialMs
     } else {
@@ -91,7 +88,6 @@ const mutations = {
 
     if (state.ms <= 0) {
       state.isRunning = false
-      state.isEnded = true
       if (state.count == state.countRests || 0) {
         state.count++
         const rest = (state.count % state.cycle) ? state.shortRest : state.longRest
