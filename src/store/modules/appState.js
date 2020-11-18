@@ -20,15 +20,10 @@ const mutations = {
   }
 }
 
-const hydrate = function(module) {
-  return module
-}
-
 export default {
   namespaced: true,
   state,
   getters,
   actions,
-  mutations,
-  hydrate
+  mutations
 }

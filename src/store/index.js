@@ -3,8 +3,6 @@ import Vuex from 'vuex'
 import timebox from './modules/timebox'
 import appState from './modules/appState'
 
-const modules = new Map([['timebox', timebox], ['appState', appState]])
-
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -21,9 +19,6 @@ const store = new Vuex.Store({
         this.replaceState(
           Object.assign(state, JSON.parse(localStorage.getItem(storageItem)))
         )
-        for(var [key, module] of Object.entries(state)) {
-          modules.get(key).hydrate(module)
-        }
       }
     },
   },

@@ -1,8 +1,23 @@
-import Timebox from '../../models/Timebox.js'
-import TimeboxState from '../../models/TimeboxState.js'
+function minutesToMs (minutes) {
+    return minutes * 60 * 1000
+}
 
-const initialState = new TimeboxState()
+const initialState = {
+  ms: 0,
+  current: 0,
+  end: 0,
+  initialMs: 0,
+  timebox: 0,
+  shortRest: 0,
+  longRest: 0,
+  cycle: 4,
+  count: 0,
+  isRunning: false,
+  isEnded: false,
+  type: 'wip',
+  countRests: 0
 
+}
 const state = () => (
   initialState
 )
@@ -48,7 +63,7 @@ const actions = {
 
 const mutations = {
   clean(state) {
-    state.initialMs = state.timebox.toMs()
+    state.initialMs = minutesToMs(state.timebox)
     state.ms = state.initialMs
     state.type = 'wip'
     state.current = 0,
@@ -77,38 +92,33 @@ const mutations = {
     if (state.ms <= 0) {
       state.isRunning = false
       state.isEnded = true
-      const rest = (state.count % state.cycle) ? state.shortRest : state.longRest
       if (state.count == state.countRests || 0) {
         state.count++
-        state.initialMs = rest.toMs()
+        const rest = (state.count % state.cycle) ? state.shortRest : state.longRest
+        state.initialMs = minutesToMs(rest)
         state.ms = state.initialMs
         state.type = 'rest'
       } else {
         state.countRests++
-        state.initialMs = rest.toMs()
+        state.initialMs = minutesToMs(state.timebox)
         state.ms = state.initialMs
         state.type = 'wip'
       }
     }
   },
   setMinutes(state, { box, minutes }) {
-    const timebox = new Timebox(minutes)
-    state[box] = timebox
+    state[box] = minutes
     if (box == 'timebox') {
-      state.initialMs = state.timebox.toMs()
+      state.initialMs = minutesToMs(state.timebox)
       state.ms = state.initialMs
     }
   }
 }
 
-const hydrate = function(module) {
-  return module
-}
 export default {
   namespaced: true,
   state,
   getters,
   actions,
-  mutations,
-  hydrate
+  mutations
 }
